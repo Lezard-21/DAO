@@ -19,8 +19,8 @@ public class App
         port(getHerokuAssignedPort());
         get("/usuario", (req,res)->{
             res.type("application/json");
-            return gson.toJson(usuarios.values());
-            // return gson.toJson(DAO.getAllUsuarios());
+            // return gson.toJson(usuarios.values());
+            return gson.toJson(DAO.getAllUsuarios());
         });
         get("/usuario/byId", (req,res)->{
             String id = req.queryParams("id");
@@ -33,8 +33,8 @@ public class App
             String id = UUID.randomUUID().toString();
             user.setId(id);
             usuarios.put(id, user);
-            // DAO.createUsuario(user);
-            System.out.println("i:"+user.getId());
+            DAO.createUsuario(user);
+            // System.out.println("i:"+user.getId());
             // res.type("application/json");
             res.type("application/json");
             res.status(200);
